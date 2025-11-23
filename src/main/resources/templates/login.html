@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>로그인 - Note</title>
+    <link rel="stylesheet" href="/css/main.css">
+</head>
+<body>
+<div class="container">
+    <h1>Note 로그인</h1>
+
+    <div class="message">
+        <span th:text="${message}"></span>
+        <span th:text="${param.error} ? '로그인 실패: 아이디 또는 비밀번호를 확인하세요.'"></span>
+        <span th:text="${param.logout} ? '로그아웃되었습니다.'"></span>
+    </div>
+
+    <form method="post" action="/login" class="form-card">
+        <label>아이디</label>
+        <input type="text" name="username" required>
+        <label>비밀번호</label>
+        <input type="password" name="password" required>
+        <button type="submit">로그인</button>
+    </form>
+
+    <p>계정이 없나요? <a href="/signup">회원가입</a></p>
+</div>
+</body>
+</html>

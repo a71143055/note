@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>메모 작성/수정 - Note</title>
+    <link rel="stylesheet" href="/css/main.css">
+</head>
+<body>
+<div class="container">
+    <h1 th:text="${note} != null ? '메모 수정' : '새 메모'">메모</h1>
+    <form th:action="${note} != null ? @{|/notes/${note.id}|} : @{/notes}" method="post" class="form-card">
+        <label>제목</label>
+        <input type="text" name="title" required maxlength="100" th:value="${note} != null ? ${note.title} : ''">
+        <label>내용</label>
+        <textarea name="content" rows="10" required th:text="${note} != null ? ${note.content} : ''"></textarea>
+        <button type="submit" th:text="${note} != null ? '수정하기' : '작성하기'">작성하기</button>
+    </form>
+    <p><a href="/notes">목록으로</a></p>
+</div>
+</body>
+</html>

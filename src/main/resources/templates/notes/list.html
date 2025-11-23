@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>내 메모 - Note</title>
+    <link rel="stylesheet" href="/css/main.css">
+</head>
+<body>
+<div class="container">
+    <div class="topbar">
+        <h1>내 메모</h1>
+        <div>
+            <a href="/notes/new" class="button">새 메모</a>
+            <a href="/logout" class="button-outline">로그아웃</a>
+        </div>
+    </div>
+
+    <div th:if="${#lists.isEmpty(notes)}">
+        아직 메모가 없습니다. 새 메모를 작성해보세요.
+    </div>
+
+    <ul class="note-list" th:if="${!#lists.isEmpty(notes)}">
+        <li th:each="note : ${notes}">
+            <a th:href="@{|/notes/${note.id}|}" th:text="${note.title}">제목</a>
+            <span class="meta" th:text="${#temporals.format(note.updatedAt, 'yyyy-MM-dd HH:mm')}"></span>
+            <a class="small" th:href="@{|/notes/${note.id}/edit|}">수정</a>
+            <form th:action="@{|/notes/${note.id}/delete|}" method="post" class="inline">
+                <button type="submit" class="small danger">삭제</button>
+            </form>
+        </li>
+    </ul>
+</div>
+</body>
+</html>
