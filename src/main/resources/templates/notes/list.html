@@ -25,6 +25,7 @@
             <span class="meta" th:text="${#temporals.format(note.updatedAt, 'yyyy-MM-dd HH:mm')}"></span>
             <a class="small" th:href="@{|/notes/${note.id}/edit|}">수정</a>
             <form th:action="@{|/notes/${note.id}/delete|}" method="post" class="inline">
+                <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
                 <button type="submit" class="small danger">삭제</button>
             </form>
         </li>

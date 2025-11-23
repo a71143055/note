@@ -12,6 +12,7 @@
         <div>
             <a th:href="@{|/notes/${note.id}/edit|}" class="button">수정</a>
             <form th:action="@{|/notes/${note.id}/delete|}" method="post" class="inline">
+                <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
                 <button type="submit" class="button-outline danger">삭제</button>
             </form>
             <a href="/notes" class="button-outline">목록</a>
