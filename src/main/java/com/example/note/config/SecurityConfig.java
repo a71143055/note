@@ -52,8 +52,9 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
-                // CSRF 활성화(기본값). 모든 POST 요청은 토큰 필요.
-                .csrf(csrf -> csrf.enable())
+                // CSRF는 기본적으로 활성화되어 있습니다. 별도의 enable() 메서드는 없습니다.
+                // 필요 시 특정 엔드포인트를 제외하려면 아래처럼 사용할 수 있습니다:
+                // .csrf(csrf -> csrf.ignoringRequestMatchers("/signup"))
 
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/login", "/signup", "/css/**").permitAll()
